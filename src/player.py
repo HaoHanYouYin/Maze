@@ -5,7 +5,7 @@ class Player(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self)
         self.x = start_x
         self.y = start_y
-        self.image = pg.image.load('../assets/Red_Block.png')
+        self.image = pg.image.load('assets/Red_Block.png')
 
     def move(self, move_x, move_y):
         self.x += move_x

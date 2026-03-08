@@ -1,4 +1,4 @@
-from scr.maze.generator import prim, kruskal, dfs_generator, Graph
+from maze.generator import *
 
 def init_maze(width, height, generator):
     graph_width = width // 2

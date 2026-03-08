@@ -1,14 +1,14 @@
 import pygame as pg
 from maze.init import init_maze
-from scr.player import *
-from scr.block import *
+from player import *
+from block import *
 
 
 class Game:
     def __init__(self, width, height):
         self.HEIGHT = height
         self.WIDTH = width
-        self.BLOCK_SIZE = pg.image.load('../assets/Blue_Block.png').get_width()
+        self.BLOCK_SIZE = pg.image.load('assets/Blue_Block.png').get_width()
         self.SCREEN_HEIGHT = self.BLOCK_SIZE * height
         self.SCREEN_WIDTH = self.BLOCK_SIZE * width
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
@@ -25,6 +25,10 @@ class Game:
         else:
             return False
 
+    def win(self):
+        print('你赢了！')
+        pass
+
     def run(self):
         blocks = []
         for block in range(self.HEIGHT):
@@ -36,6 +40,7 @@ class Game:
             self.clock.tick(self.FPS)
             if self.is_to_ending():
                 self.running = False
+                self.win()
                 break
             for event in pg.event.get():
                 if event.type == pg.QUIT:
