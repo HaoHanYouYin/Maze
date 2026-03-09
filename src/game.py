@@ -2,13 +2,13 @@ import pygame as pg
 from maze.init import init_maze
 from player import *
 from block import *
-
+import os
 
 class Game:
     def __init__(self, width, height):
         self.HEIGHT = height
         self.WIDTH = width
-        self.BLOCK_SIZE = pg.image.load('assets/Blue_Block.png').get_width()
+        self.BLOCK_SIZE = pg.image.load('../assets/Blue_Block.png').get_width()
         self.SCREEN_HEIGHT = self.BLOCK_SIZE * height
         self.SCREEN_WIDTH = self.BLOCK_SIZE * width
         self.screen = pg.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))

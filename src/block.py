@@ -3,7 +3,7 @@ import pygame as pg
 class Block(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.image.load('assets/Blue_Block.png')
+        self.image = pg.image.load('../assets/Blue_Block.png')
         self.x = x
         self.y = y
         self.BLOCK_SIZE = self.image.get_width()
@@ -13,4 +13,4 @@ class Block(pg.sprite.Sprite):
 class Ending_Block(Block):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.image = pg.image.load('assets/Ending_Block.png')
+        self.image = pg.image.load('../assets/Ending_Block.png')

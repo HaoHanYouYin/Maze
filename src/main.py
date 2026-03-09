@@ -1,6 +1,10 @@
 from game import Game
-import os
 
 if __name__ == '__main__':
-    game = Game(11, 11)
-    game.run()
+    width = 7
+    height = 5
+    if 1 <=width <= 15 and 1 <= height <= 8:
+        game = Game(2 * width + 1, 2 * height + 1)
+        game.run()
+    else:
+        print('错误的长宽')
