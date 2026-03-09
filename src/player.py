@@ -11,6 +11,6 @@ class Player(pg.sprite.Sprite):
         self.x += move_x
         self.y += move_y
 
-    def draw(self, screen):
+    def draw(self, screen, offset):
         L = self.image.get_width()
-        screen.blit(self.image, (L * self.y, L * self.x))
+        screen.blit(self.image, (L * self.y + offset[0], L * self.x + offset[1]))

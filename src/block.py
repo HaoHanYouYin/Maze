@@ -1,5 +1,6 @@
 import pygame as pg
 
+# 普通方格
 class Block(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
@@ -7,9 +8,10 @@ class Block(pg.sprite.Sprite):
         self.x = x
         self.y = y
         self.BLOCK_SIZE = self.image.get_width()
-    def draw(self, screen):
-        screen.blit(self.image, (self.y * self.BLOCK_SIZE, self.x * self.BLOCK_SIZE))
+    def draw(self, screen, offset):
+        screen.blit(self.image, (self.y * self.BLOCK_SIZE + offset[0], self.x * self.BLOCK_SIZE + offset[1]))
 
+# 终点
 class Ending_Block(Block):
     def __init__(self, x, y):
         super().__init__(x, y)
