@@ -2,9 +2,10 @@ import pygame as pg
 from maze.init import init_maze
 from player import *
 from block import *
+import time
 
 class Game:
-    def __init__(self, width, height):
+    def __init__(self, width, height, Time):
         # 迷宫默认的长和宽
         self.HEIGHT = height
         self.WIDTH = width
@@ -25,6 +26,7 @@ class Game:
         self.running = True
         self.maze = init_maze(width, height, 'kruskal')
         self.player = Player(1, 1)
+        self.Time = Time
 
         # 终点坐标，传入迷宫长度
         self.ending_block = Ending_Block(height - 2, width - 2)
@@ -40,20 +42,31 @@ class Game:
         else:
             return False
 
-    # 胜利
-    def win(self):
-        print('你赢了！')
-        pass
-
     def run(self):
+        start_time = time.perf_counter()
+        end_time = 0
         blocks = []
         for block in range(self.HEIGHT):
             for j in range(self.WIDTH):
                 if self.maze[block][j] == 1:
                     blocks.append(Block(block, j))
+
         pg.init()
         while self.running:
+            # 如果剩余时间归零
+            if self.Time < 0:
+                self.lose()
+                break
+
+            # 计数器
+            end_time = time.perf_counter()
+            if int(end_time - start_time) >= 1:
+                print(f"时间还剩下: {self.Time} 秒")
+                self.Time -= 1
+                start_time = end_time
             self.clock.tick(self.FPS)
+
+            # 如果到达终点
             if self.is_to_ending():
                 self.running = False
                 self.win()
@@ -102,3 +115,12 @@ class Game:
             self.ending_block.draw(self.screen, self.offset)
             pg.display.update()
         pg.quit()
+
+    # 胜利
+    @staticmethod
+    def win():
+        print('你赢了！')
+
+    # 失败
+    def lose(self):
+        print('你输了……')
